@@ -1,0 +1,65 @@
+﻿@page
+@using Microsoft.AspNetCore.Http;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+    <form method="post">
+        <input type="text" name="JsonPropost" asp-for="JsonPropost"> 
+        <input type="number" name="versaoPropost" asp-for="versaoPropost"> 
+        <input type="text" name="tituloPropost" asp-for="tituloPropost"> 
+
+        <input type="submit">
+    </form>
+
+
+
+    <form method="post">
+         <input type="text" name="JsonPropost" asp-for="Proposta.JsonPropost"> 
+
+        <button asp-page-handler="Register">Register Now</button>
+        <button asp-page-handler="RequestInfo">Request Info</button>
+        @*<input type="submit">*@
+    </form>
+
+
+    @{
+        if (Model.Proposta != null && (Model.JsonPropost != null && 
+                                       Model.tituloPropost != null &&
+                                       Model.versaoPropost > 0))
+        {
+            <span>@Model.JsonPropost</span>
+            <span>@Model.tituloPropost</span>
+            <span>@Model.versaoPropost</span>    
+            
+            <p>@Model.Proposta.JsonPropost</p>
+            <p>@Model.Proposta.versaoPropost</p>
+            <p>@Model.Proposta.tituloPropost</p>
+    
+
+   
+        string JsonPropost = Request.Form["JsonPropost"];
+        string tituloPropost = Request.Form["tituloPropost"];
+        int versaoPropost = Int32.Parse(Request.Form["versaoPropost"]);
+
+        <text>
+          Valores inseridos: <br />
+          JsonPropost: @JsonPropost <br />
+          versaoPropost: @versaoPropost <br />
+          tituloPropost: @tituloPropost <br />
+        </text>
+        }
+    }
+
+    
+
+    
+
+    
+</div>
